@@ -234,26 +234,27 @@ app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, greet_memb
 app.add_handler(CallbackQueryHandler(button_callback))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, on_message))
 
-# === KEEP-ALIVE SERVER (Render fix) ===
+# === KEEP ALIVE FOR RENDER ===
 from flask import Flask
 from threading import Thread
 import os
 
-app_web = Flask('')
+def start_web():
+    web = Flask(__name__)
 
-@app_web.route('/')
-def home():
-    return "QuantumOrigin bot is alive"
+    @web.route('/')
+    def home():
+        return 'QuantumOrigin bot is alive'
 
-def run():
-    port = int(os.environ.get("PORT", 8080))
-    app_web.run(host="0.0.0.0", port=port)
+    port = int(os.environ.get('PORT', 8080))
+    web.run(host='0.0.0.0', port=port)
 
-Thread(target=run).start()
+Thread(target=start_web).start()
 
-# Telegram bot startup
-if __name__ == "__main__":
-    app.run_polling()
+# === START TELEGRAM BOT ===
+print("QuantumOrigin BOT started...")
+app.run_polling()
+
 
 
 

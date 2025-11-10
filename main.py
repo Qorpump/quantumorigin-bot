@@ -188,7 +188,7 @@ async def on_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == "menu_help":
         txt = (
             "Commands:\n"
-            "/wallet YOUR_SOL_ADDRESS — connect your Solana address\n"
+            async def count_messages(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "/mywallet — view your wallet\n"
             "/rank — top active members\n"
             "/balance — your QOR points\n"

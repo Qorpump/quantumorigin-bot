@@ -234,19 +234,23 @@ app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, greet_memb
 app.add_handler(CallbackQueryHandler(button_callback))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, on_message))
 
-print("QuantumOrigin BOT is live...")
-app.run_polling()
+# === KEEP-ALIVE SERVER (Render fix) ===
 from flask import Flask
-import threading
+import threading, os
 
-app = Flask(__name__)
+app_web = Flask(__name__)
 
-@app.route('/')
+@app_web.route('/')
 def home():
-    return "Bot is running"
+    return "QuantumOrigin bot is running"
 
 def run_flask():
-    app.run(host="0.0.0.0", port=10000)
+    port = int(os.environ.get('PORT', 8080))
+    app_web.run(host="0.0.0.0", port=port)
 
 threading.Thread(target=run_flask).start()
+
+print("QuantumOrigin BOT started...")
+app.run_polling()
+
 

@@ -140,7 +140,7 @@ async def count_messages(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def greet_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
     for member in update.message.new_chat_members:
         await update.message.reply_text(
-            f"👋 Welcome, {member.first_name}!\n"
+            "👋 Welcome to Quantum Origin!\n"
             "Link your wallet to join QOR rewards:\n"
             "Use /wallet YOUR_SOL_ADDRESS",
             reply_markup=main_menu()

@@ -1,3 +1,4 @@
+"👋 Welcome to Quantum Origin!\n"
 # QuantumOriginBOT — menu, English only, score system with cooldown
 # For python-telegram-bot==20.6
 

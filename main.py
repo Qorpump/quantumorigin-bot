@@ -236,21 +236,24 @@ app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, on_message))
 
 # === KEEP-ALIVE SERVER (Render fix) ===
 from flask import Flask
-import threading, os
+from threading import Thread
+import os
 
-app_web = Flask(__name__)
+app_web = Flask('')
 
 @app_web.route('/')
 def home():
-    return "QuantumOrigin bot is running"
+    return "QuantumOrigin bot is alive"
 
-def run_flask():
-    port = int(os.environ.get('PORT', 8080))
+def run():
+    port = int(os.environ.get("PORT", 8080))
     app_web.run(host="0.0.0.0", port=port)
 
-threading.Thread(target=run_flask).start()
+Thread(target=run).start()
 
-print("QuantumOrigin BOT started...")
-app.run_polling()
+# Telegram bot startup
+if __name__ == "__main__":
+    app.run_polling()
+
 
 
